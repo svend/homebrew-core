@@ -41,6 +41,7 @@ class Libressl < Formula
   def post_install
     keychains = %w[
       /System/Library/Keychains/SystemRootCertificates.keychain
+      /Library/Keychains/System.keychain
     ]
 
     certs_list = `security find-certificate -a -p #{keychains.join(" ")}`
@@ -64,8 +65,7 @@ class Libressl < Formula
 
   def caveats; <<~EOS
     A CA file has been bootstrapped using certificates from the SystemRoots
-    keychain. To add additional certificates (e.g. the certificates added in
-    the System keychain), place .pem files in
+    and System keychains. To add additional certificates place .pem files in
       #{etc}/libressl/certs
 
     and run

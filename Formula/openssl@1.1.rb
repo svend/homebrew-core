@@ -67,6 +67,7 @@ class OpensslAT11 < Formula
   def post_install
     keychains = %w[
       /System/Library/Keychains/SystemRootCertificates.keychain
+      /Library/Keychains/System.keychain
     ]
 
     certs_list = `security find-certificate -a -p #{keychains.join(" ")}`
